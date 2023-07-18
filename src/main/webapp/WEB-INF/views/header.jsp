@@ -61,7 +61,10 @@
           <div class="field">
           <input type="submit" value="로그인" class="button is-warning is-light"/>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="join.html" class="button is-success is-light">회원가입</a>	 
+          
+          <!-- 박지현 수정 -->
+          <a href="./join" class="button is-success is-light">회원가입</a>	 
+          
           </div>	
         </form>
       </div>

@@ -12,9 +12,12 @@ public class UserDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+  public String checkUserIdExist(String id) {
+	String name = sqlSessionTemplate.selectOne("user1.checkUserIdExist", id);
+		return name;
+  }
 	
-	public UserDTO getUserTest(String id) {
-		return sqlSessionTemplate.selectOne("user1.getUserTest", id);
-	}
-	
+  public void addUserInfo(UserDTO joinUserDto) {
+  	sqlSessionTemplate.insert("user1.addUserInfo", joinUserDto);
+  }
 }

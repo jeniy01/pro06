@@ -1,15 +1,30 @@
 package kr.gobong.domain;
 
-import lombok.Data;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-@Data
 public class UserDTO {
+	
+		@Size(min=4, max=20)
+		@Pattern(regexp="[a-zA-Z0-9]*")
     private String id;
+    
+    @Size(min=2, max=4)
+    @Pattern(regexp="[가-힣]*")
     private String name;
+    
+    @Size(min=4, max=20)
+    @Pattern(regexp="[a-zA-Z0-9]*")
     private String pw;
+    
     private String email;
     private String tel;
     private String regdate;
+    private String img;
+    
+    @Size(min=4, max=20)
+    @Pattern(regexp="[a-zA-Z0-9]*")
+    private String pw2;
     
 	public String getId() {
 		return id;
@@ -47,5 +62,16 @@ public class UserDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-    
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getPw2() {
+		return pw2;
+	}
+	public void setPw2(String pw2) {
+		this.pw2 = pw2;
+	}
 }
