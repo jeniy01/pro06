@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="user1">
+ 	<select id="getUserTest" parameterType="java.lang.String" resultType="kr.gobong.domain.UserDTO">
+ 	<![CDATA[
+ 		select *  from user1 where id = #{id}
+ 	]]>
+ 	</select>
+
+	<select id="checkUserIdExist" parameterType="java.lang.String"
+		resultType="java.lang.String">
+    <![CDATA[
+        select name from user1 where id = #{id}
+    ]]>
+	</select>
+
+	<insert id="addUserInfo"
+		parameterType="kr.gobong.domain.UserDTO">
+ 	<![CDATA[
+ 		insert into user1(id,name,pw,email,tel,regdate,img) values(#{id},#{name},#{pw},#{email},#{tel},default,default)
+ 	]]>
+	</insert>
+	
+	 <select resultType="kr.gobong.domain.UserDTO" parameterType="kr.gobong.domain.UserDTO" id="getUserLogin">
+ 		<![CDATA[
+ 			SELECT id, name
+ 			FROM user1
+ 			WHERE id = #{id} and pw = #{pw}
+ 		]]>
+ 	</select>
+ 	
+  	<!-- 0719 손승기 -->
+ 	<!-- 나의 프로필 불러오기 -->
+ 	<select resultType="kr.gobong.domain.UserVO" parameterType="java.lang.String" id="getUserProfile">
+ 	<![CDATA[
+ 		SELECT u.id, u.name, u.img, b.img1 
+ 		FROM user1 u INNER JOIN board1 b 
+ 		ON u.id = b.id 
+ 		WHERE u.id = #{u.id} order by b.regdate desc
+ 	]]>
+ 	
+ 	</select>
+ 	
+ 	<!-- 마이페이지 나의정보 불러오기 -->
+ 	<select resultType="kr.gobong.domain.UserDTO" parameterType="java.lang.String" id="getUserInfo">
+ 	<![CDATA[
+		SELECT *
+		FROM user1
+		WHERE id = #{id}
+	]]>
+ 	</select>
+ 	
+ 	<update parameterType="kr.gobong.domain.UserDTO" id="userModifyPro">
+ 	<![CDATA[
+ 		UPDATE user1 
+ 		SET pw = #{pw}, email = #{email},  img = #{img, jdbcType=NULL}, tel = #{tel} 
+ 		WHERE id = #{id}
+ 	]]>
+ 	</update>
+ 	<!-- 0719 손승기 -->
+ 	
+ 	<!-- 0721 조태정 -->
+ 	<!-- 회원탈퇴 -->
+ 	 <delete id="userDel" parameterType="kr.gobong.domain.UserDTO">
+	<![CDATA[
+	 	delete from user1 where id = #{id}
+	]]>
+ 	</delete>
+</mapper>
+ 
